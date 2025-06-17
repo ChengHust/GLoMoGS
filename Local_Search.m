@@ -27,7 +27,7 @@ for i = 1 : Np
     Sel1 = IndexofSol(i);
     Sel2 = IndexofSol(i+Np);
 
-    if error( Sel1 ) > error( Sel2 )
+    if error( Sel1 ) >= error( Sel2 )
         Mask(i,Sel1)   = 0;
     else
         Mask(i,Sel2)   = 0;
