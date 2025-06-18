@@ -52,7 +52,7 @@ function Offspring = BinaryCSO(Loser,Winner,pb,CNNnet)
         error0  = predict(CNNnet,OffDec_reshape);
         error1  = predict(CNNnet,MutDec_reshape);
      
-        if error1 < error0
+        if error1 <= error0
             OffspringDec(i,:) = MutaDec;
             OffspringObj(i,1) = sum(MutaDec);
             OffspringObj(i,2) = error1;
