@@ -21,6 +21,10 @@ D = size(ScRNAseqData,2)-1;  % Number of decision variables
 Arc  = Initialization(N,D,Na,ScRNAseqData);
 EFEs = size(Arc,2);
 
+%% Initial HVrecord
+PopObj    = Arc.objs;
+[HVrecord,~] = calHV(PopObj,[D,1]);
+
 %% MainLoop
 Surr_Flag  = floor(EFEs/100);
 
@@ -75,5 +79,9 @@ while EFEs < MaxFEs
     Local_Data   = d_individual(Local_best, [rate,error]);
     Arc          = [Arc,Local_Data];
     EFEs         = EFEs + 1;  
+
+    % HV result
+    [Score,~] = calHV(Arc.objs,[D,1]);
+    HVrecord  = [HVrecord;Score];
     
 end
