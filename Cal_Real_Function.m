@@ -11,7 +11,7 @@ for i = 1 : N
     
     ind  = indX(i,:);
     
-    %% 数据处理
+    %% Data processing
     data  = Originaldata(:,1:end-1);
     label = Originaldata(:,end);
     scale = size(data,1);
@@ -21,33 +21,32 @@ for i = 1 : N
     
     data  = data(:,SelectInd);
     
-    % 10折交叉
+    % 10-fold
     nFold    = 10;
     indices = crossvalind('Kfold', scale, nFold);
 
     Accuracy = 0;
     for nF = 1 : nFold 
     
-        % 训练集索引 和 测试集索引
+        % train and test indices
         testIndices  = (indices == nF);
         trainIndices   = ~testIndices;
        
-        % 训练集和训练标签
+        % train and train label
         trainData  = data(trainIndices, :);
         trainLabel = label(trainIndices, :);
     
-        % 测试集和测试标签
+        % test and test label
         testData = data(testIndices, :);
         testLabel = label(testIndices, :);
     
-        %% KNN分类
+        %% KNN
         kNNClassifier = fitcknn(trainData, trainLabel, 'NumNeighbors', 5);
         Prelabel = predict(kNNClassifier,testData);
         Acc = sum(Prelabel==testLabel)/length(testLabel);
         Accuracy = Accuracy + Acc;
     end
     Acc = Accuracy / nFold;
-     %% 选择特征的比例 和 分类误差
     rate(i,:)  = sum(ind);
     error(i,:) = 1 - Acc;
 
