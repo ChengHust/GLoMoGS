@@ -14,7 +14,7 @@ function Offspring = BinaryCSO(Loser,Winner,pb,CNNnet)
     R1 = r1 <= repmat(p1,N,1);
     R2 = r2 <= repmat(pb,N,D);
 
-    OffDec = LoserDec - (WinnerDec&LoserDec) + R1.*(WinnerDec&LoserDec) + (WinnerDec-LoserDec);
+    OffDec = LoserDec - (WinnerDec&LoserDec) + R1.*(WinnerDec&LoserDec) + R2.*(WinnerDec-LoserDec);
 
 
     [N,D]  = size(OffDec);
