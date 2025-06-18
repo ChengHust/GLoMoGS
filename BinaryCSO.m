@@ -15,8 +15,7 @@ function Offspring = BinaryCSO(Loser,Winner,pb,CNNnet)
     R2 = r2 <= repmat(pb,N,D);
 
     OffDec = LoserDec - (WinnerDec&LoserDec) + R1.*(WinnerDec&LoserDec) + R2.*(WinnerDec-LoserDec);
-
-
+    
     [N,D]  = size(OffDec);
     Lower  = repmat(zeros(1,D),N,1);
     Upper  = repmat(ones(1,D),N,1);
@@ -26,7 +25,7 @@ function Offspring = BinaryCSO(Loser,Winner,pb,CNNnet)
     OffspringObj = zeros(N,2);
    
 
-%% mutation
+    %% mutation
 
     for i = 1 : N
         
@@ -44,8 +43,7 @@ function Offspring = BinaryCSO(Loser,Winner,pb,CNNnet)
             randDel  = randperm(numel(randone),floor(numel(randone)/10));
             MutaDec(:,randone(randDel)) = 0;
         end
-
-       
+        
         OffDec_reshape = reshape(OffDec(i,:),[D,1,1]);
         MutDec_reshape = reshape(MutaDec,[D,1,1]);
        
