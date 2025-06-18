@@ -40,16 +40,16 @@ layers = [
     imageInputLayer([TeD 1 1])
 
     % First convolutional layer
-    convolution2dLayer([128, 1], 16, 'Padding', 'same')
+    convolution2dLayer([9, 1], 16, 'Padding', 'same')
     batchNormalizationLayer
     reluLayer
-    maxPooling2dLayer([8, 1], 'Stride', [8, 1])
+    maxPooling2dLayer([2, 1], 'Stride', [2, 1])
     
     % The second convolutional layer
-    convolution2dLayer([64, 1], 32, 'Padding', 'same')
+    convolution2dLayer([9, 1], 32, 'Padding', 'same')
     batchNormalizationLayer
     reluLayer
-    maxPooling2dLayer([4, 1], 'Stride', [4, 1])
+    maxPooling2dLayer([2, 1], 'Stride', [2, 1])
 
     
     % Full conn
