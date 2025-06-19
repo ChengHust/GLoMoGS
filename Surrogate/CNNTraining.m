@@ -8,7 +8,7 @@ DataObj = DataObj';
 
 N = size(DataDec,2);
 
-[trainIdx,testIdx] = crossvalind('HoldOut', N, 1/3);
+[trainIdx,testIdx] = crossvalind('HoldOut', N, 1/4);
 
 TrainDec = DataDec(:,trainIdx);
 TrainObj = DataObj(:,trainIdx);
